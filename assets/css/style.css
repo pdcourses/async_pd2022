@@ -1,0 +1,16 @@
+.container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+#spinner{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    transform-origin: 50% 50%;
+
+}
