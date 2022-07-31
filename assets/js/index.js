@@ -1,18 +1,17 @@
 /*
-Асинхронный код выполняется сразу после синхронного
+Задание . функцию которая выводит чисоа  от 1 до 10  с интервалом
+0.1 с. т ою вывод 1 с.
 */
-
-const spinner = document.getElementById('spinner');
-let c = 0;
-
-setInterval(rotateSpinner, 1000 / 50);
-
-function rotateSpinner () {
-    spinner.style.transform = `rotate(${++c}deg)`;
+// -
+for(let i=1; i<=10; i++){
+    setTimeout (() => {
+        console.log(i);
+    }, 100)
 }
 
-const helloBtn = document.getElementById('hello');
+// +
 
-helloBtn.onclick = function () {
-    alert('Hello');
-};
+let start = 100, end = 110;
+const timerId = setInterval( () => {
+    start <= end ? console.log(start++) : clearInterval(timerId);
+});
