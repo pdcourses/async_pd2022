@@ -1,0 +1,32 @@
+[
+    {
+        "name": "test1",
+        "surname": "testovich1",
+        "age": 20,
+        "isMale": true
+    },
+    {
+        "name": "test2",
+        "surname": "testovich2",
+        "age": 22,
+        "isMale": true
+    },
+    {
+        "name": "test3",
+        "surname": "testovich3",
+        "age": 20,
+        "isMale": false
+    },
+    {
+        "name": "test4",
+        "surname": "testovich4",
+        "age": 18,
+        "isMale": true
+    },
+    {
+        "name": "test5",
+        "surname": "testovich5",
+        "age": 20,
+        "isMale": false
+    }
+]

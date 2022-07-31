@@ -1,17 +1,29 @@
-/*
-Задание . функцию которая выводит чисоа  от 1 до 10  с интервалом
-0.1 с. т ою вывод 1 с.
-*/
-// -
-for(let i=1; i<=10; i++){
-    setTimeout (() => {
-        console.log(i);
-    }, 100)
+const btn = document.getElementById('loadUsers');
+
+const store = {
+    users: null,
+    isFetching: false,
+    error: null,
+};
+
+const request = new XMLHttpRequest();
+
+btn.onclick = function () {
+    request.open('GET', '../../assets/data/users.json', true);
+    request.send();
+    console.log(store.users);
 }
 
-// +
+request.onloadstart = function(){
+    store.isFetching = true;
+}
 
-let start = 100, end = 110;
-const timerId = setInterval( () => {
-    start <= end ? console.log(start++) : clearInterval(timerId);
-});
+request.onloadend = function() {
+    store.isFetching = false;
+    if(this.status >=200 && this.status < 300){
+        store.users = JSON.parse(this.responseText);
+    } else {
+        store.error = new Error(this.statusText)
+    }
+
+}
