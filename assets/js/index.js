@@ -1,3 +1,4 @@
+
 const btn = document.getElementById('loadUsers');
 
 const store = {
@@ -6,24 +7,22 @@ const store = {
     error: null,
 };
 
-const request = new XMLHttpRequest();
-
 btn.onclick = function () {
-    request.open('GET', '../../assets/data/users.json', true);
-    request.send();
-    console.log(store.users);
+    fetch('../../assets/data/users.json').then(loadResolve).then(logData).catch(loadReject);
 }
 
-request.onloadstart = function(){
-    store.isFetching = true;
+// data to console
+function logData(data){
+    console.log(data);
 }
 
-request.onloadend = function() {
-    store.isFetching = false;
-    if(this.status >=200 && this.status < 300){
-        store.users = JSON.parse(this.responseText);
-    } else {
-        store.error = new Error(this.statusText)
-    }
+// good!
+function loadResolve(response){
+    console.log(response.json());
+    return response.json();
+}
 
+// error , bad ((
+function loadReject(response){
+    console.log(response);
 }
