@@ -8,21 +8,25 @@ const store = {
 };
 
 btn.onclick = function () {
-    fetch('../../assets/data/users.json').then(loadResolve).then(logData).catch(loadReject);
+    fetch('../../assets/data/users1.json').then(loadResolve).then(logData).catch(loadReject);
 }
 
 // data to console
 function logData(data){
-    console.log(data);
+    store.isFetching = false;
+    store.users = data;
+    console.log(store.users);
 }
 
 // good!
 function loadResolve(response){
-    console.log(response.json());
+    store.isFetching = true;
     return response.json();
 }
 
 // error , bad ((
 function loadReject(response){
+    store.error = new Error(`${response.status} ${response.statusText} `);
     console.log(response);
+
 }
