@@ -1,41 +1,39 @@
-// цепь из 2 обещаний
-//1
-const isIHaveEnoughMoney = true;
-const buyNewPhonePromise = new Promise(getPhone);
-function getPhone(resolve, reject){
-    if(isIHaveEnoughMoney){
-        const phone = {
-            model: 'modelX',
-            color: 'black',
-            year: 2022
-        };
-        resolve(phone);
+function getNumber(resolve, reject){
+    const num = Math.random();
+    if(num >= 0.5) {
+        resolve('ok');
     } else{
-        const reason = new Error('Try again...)');
-        reject(reason);
+        reject(new Error(`${num}:error get number > 0.5`));
     }
 }
-//2
-async function showMyNewCoolPhone(phone){
-    const showNewPhonePromise = await new Promise(showForFriends);
-    function showForFriends(resolve, reject){
-            const msg = `Hello, I have a new phone ${phone.model} ${phone.year}`;
-            console.log(msg);
-            resolve(msg);
-    }
+
+const setPromises = [];
+for(let i=0; i<10; i++){
+    setPromises[i]=new Promise(getNumber);
 }
-//connect ES7
-async function buy(){
+console.log(setPromises);
+
+makePromises();
+
+/*
+async function makePromises(){
     try{
-        const phone = await buyNewPhonePromise;
-        const m = await showMyNewCoolPhone(phone);
-        console.log(phone);
-        console.log(m);
+        const result = await Promise.all(setPromises);
+        console.log(result);
     } catch(error){
         console.log(error);
     }
 }
+*/
 
-// асинхронный вызов
-//(async () => {await buy();})();
-buy();
+/*
+param - set promises
+
+Promise.all() ждет когда все выполнятся успешно. если нет - преращает выполнение
+
+Promise.race() ждет когда первый (ближайший) промис выполнится
+
+Promise.allSettled()  вернет весь набор промисов со статусами 
+и ему не важно успешно или нет
+
+*/
